@@ -19,6 +19,14 @@
             background-color: black;
         }
 
+        #github-link {
+            width: 2.0em;
+            height: 2.0em;
+            padding: 1em;
+            position: absolute;
+            right: 0px;
+        }
+
         #video-player {
             width: 100%;
             height: auto;
@@ -31,20 +39,24 @@
 
 <body>
 
-    <video id="video-player"
-        poster="assets/daigo-vs-justin-evo-2004-720p.jpeg"
-        controls autoplay playsinline>
-        <source src="assets/daigo-vs-justin-evo-2004-720p.mp4"
-            type="video/mp4">
+    <a id="github-link" href="https://github.com/hackerwgf/LetsGoJustin">
+        <img width="100%" height="100%" alt="Github logo" src="assets/github-mark-white.png" />
+    </a>
+
+
+    <video id="video-player" poster="assets/daigo-vs-justin-evo-2004-720p.jpeg" controls autoplay playsinline>
+        <source src="assets/daigo-vs-justin-evo-2004-720p.mp4" type="video/mp4">
     </video>
 
     <script>
         function computeVideoPlayerLayout() {
             let player = document.getElementById("video-player");
 
+            let githubLinkHeight = document.getElementById("github-link").offsetHeight;
+            let contentHeight = window.innerHeight - githubLinkHeight;
             let scale = 1280 / 720;
-            if (window.innerWidth / window.innerHeight > scale) {
-                playerHeight = window.innerHeight >= 720 ? 720 : window.innerHeight
+            if (window.innerWidth / contentHeight > scale) {
+                playerHeight = contentHeight >= 720 ? 720 : contentHeight
                 playerWidth = 1280 * playerHeight / 720;
             } else {
                 playerWidth = window.innerWidth >= 1280 ? 1280 : window.innerWidth
@@ -54,9 +66,9 @@
             player.style.height = playerHeight + "px";
 
             let leftOffset = (window.innerWidth - playerWidth) / 2;
-            let topOffset = (window.innerHeight - playerHeight) / 2;
+            let topOffset = (contentHeight - playerHeight) / 2;
             player.style.left = (leftOffset <= 0 ? 0 : leftOffset) + "px";
-            player.style.top = (topOffset <= 0 ? 0 : topOffset) + "px";
+            player.style.top = (topOffset <= 0 ? githubLinkHeight : githubLinkHeight + topOffset) + "px";
         }
 
         window.onload = (event) => {
