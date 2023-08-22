@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/hackerwgf/LetsGoJustin/master/assets/favicon.ico">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/hackerwgf/LetsGoJustin/master/assets/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/hackerwgf/LetsGoJustin/master/assets/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/hackerwgf/LetsGoJustin/master/assets/favicon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/hackerwgf/LetsGoJustin/master/assets/apple-touch-icon.png">
+    <title>Let's go Justin!</title>
+    <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+            background-color: black;
+        }
+
+        #video-player {
+            width: 640px;
+            height: 360px;
+            object-fit: fill;
+            position: absolute;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <video id="video-player"
+        poster="https://raw.githubusercontent.com/hackerwgf/LetsGoJustin/master/assets/daigo-vs-justin-evo-2004-720p.jpeg"
+        controls autoplay playsinline>
+        <source src="https://github.com/hackerwgf/LetsGoJustin/raw/master/assets/daigo-vs-justin-evo-2004-720p.mp4"
+            type="video/mp4">
+    </video>
+
+    <script>
+        function computeVideoPlayerLayout() {
+            let player = document.getElementById("video-player");
+
+            let scale = 1280 / 720;
+            if (window.innerWidth / window.innerHeight > scale) {
+                playerHeight = window.innerHeight >= 720 ? 720 : window.innerHeight
+                playerWidth = 1280 * playerHeight / 720;
+            } else {
+                playerWidth = window.innerWidth >= 1280 ? 1280 : window.innerWidth
+                playerHeight = playerWidth * 720 / 1280;
+            }
+            player.style.width = playerWidth + "px";
+            player.style.height = playerHeight + "px";
+
+            let leftOffset = (window.innerWidth - playerWidth) / 2;
+            let topOffset = (window.innerHeight - playerHeight) / 2;
+            player.style.left = (leftOffset <= 0 ? 0 : leftOffset) + "px";
+            player.style.top = (topOffset <= 0 ? 0 : topOffset) + "px";
+        }
+
+        window.onload = (event) => {
+            computeVideoPlayerLayout();
+            document.getElementById("video-player").style.visibility = "visible";
+        }
+
+        window.onresize = (event) => computeVideoPlayerLayout();
+    </script>
+
+</body>
+
+</html>
