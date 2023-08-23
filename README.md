@@ -1,4 +1,5 @@
-# What is "*Let's go Justin!*" ?
+What is "*Let's go Justin!*" ?
+-------
 [Negro Testies](https://www.urbandictionary.com/author.php?author=Negro%20Testies) define this at [urbandictionary](https://www.urbandictionary.com/define.php?term=Let%27s%20Go%20Justin):
 > Essentially the competitive video gaming equivalent of a curse. Any competitive gamer who has this spoken to them is doomed to a terrible fate at the hands of their opponent.
 >
@@ -14,5 +15,6 @@
 > 
 > *Justin: :|*
 
-# License
+License
+-------
 This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
